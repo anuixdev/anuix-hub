@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
 
-// --- PROYECCIÓN 3D ISOMÉTRICA ---
 function project3D(x, y, z, scale, rotX, rotY, cx, cy) {
   const x1 = x * Math.cos(rotY) + z * Math.sin(rotY);
   const z1 = -x * Math.sin(rotY) + z * Math.cos(rotY);
@@ -15,10 +14,9 @@ function project3D(x, y, z, scale, rotX, rotY, cx, cy) {
   };
 }
 
-// --- CATÁLOGO DE FIGURAS 3D ---
 const FIGURAS = [
   {
-    nombre: 'FIGURA: CUBO ISOMÉTRICO 3D',
+    nombre: 'MODEL: 3D ISOMETRIC CUBE',
     fn: (p, scale, t, cx, cy) => {
       const S = 0.60;
       const edges = [
@@ -37,7 +35,7 @@ const FIGURAS = [
     },
   },
   {
-    nombre: 'FIGURA: PIRÁMIDE VECTORIAL 3D',
+    nombre: 'MODEL: 3D VECTOR PYRAMID',
     fn: (p, scale, t, cx, cy) => {
       const S = 0.65, baseY = 0.50, apexY = -0.50;
       const edges = [
@@ -57,7 +55,7 @@ const FIGURAS = [
     },
   },
   {
-    nombre: 'FIGURA: DIAMANTE / OCTAEDRO 3D',
+    nombre: 'MODEL 3D DIAMOND / OCTAHEDRON',
     fn: (p, scale, t, cx, cy) => {
       const S = 0.65, H = 0.70;
       const edges = [
@@ -76,7 +74,7 @@ const FIGURAS = [
     },
   },
   {
-    nombre: 'FIGURA: ESFERA DE ANILLOS ORBITALES',
+    nombre: 'MODEL: SPHERE OF ORBITAL RINGS',
     fn: (p, scale, t, cx, cy) => {
       const ring = Math.floor(p * 3);
       const theta = (p * 3 % 1) * Math.PI * 2;
@@ -89,7 +87,7 @@ const FIGURAS = [
     },
   },
   {
-    nombre: 'FIGURA: PRISMA HEXAGONAL 3D',
+    nombre: 'MODEL: HEXAGONAL PRISM',
     fn: (p, scale, t, cx, cy) => {
       const hexSide = Math.floor(p * 6);
       const sub = (p * 6) % 1;
@@ -125,7 +123,6 @@ export default function NanoCanvas() {
   const [selectedFigure, setSelectedFigure] = useState(null);
 
   useEffect(() => {
-    // Selección aleatoria fija para toda la sesión
     const fig = FIGURAS[Math.floor(Math.random() * FIGURAS.length)];
     setSelectedFigure(fig);
 
@@ -209,12 +206,12 @@ export default function NanoCanvas() {
   return (
     <div className="canvas-inner" ref={containerRef}>
       <div className="canvas-overlay-top">
-        SÍNTESIS POR PUNTOS [CANVAS 2D]<br />
-        MATRIZ: 1.100 NANOBOTS<br />
-        ESCALA DE GRISES: MONO-PBR
+        SYNTHESIS BY POINTS [CANVAS 2D]<br />
+        MATRIX: 1.100 NANOBOTS<br />
+        GRAY SCALE: MONO-PBR
       </div>
       <div className="figure-badge">
-        {selectedFigure ? selectedFigure.nombre : 'CALCULANDO FIGURA...'}
+        {selectedFigure ? selectedFigure.nombre : 'CALCULATING MODEL...'}
       </div>
       <canvas ref={canvasRef} />
     </div>
