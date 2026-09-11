@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import NanoCanvas from './NanoCanvas.jsx'
+import React, { useState, useEffect } from 'react';
+import NanoCanvas from './NanoCanvas.jsx';
 import './css/LoadingScreen.css';
 
 const WEB_LOGS = [
@@ -26,16 +26,16 @@ export default function LoadingScreen({ children, onComplete, onLoaded }) {
 
   const [progress, setProgress] = useState(0);
   const [activePlugins, setActivePlugins] = useState(0);
-  const [statusMsg, setStatusMsg] = useState('INICIALIZANDO BÚFER...');
+  const [statusMsg, setStatusMsg] = useState('INITIALIZING BUFFER...');
   const [logs, setLogs] = useState([]);
   const [isCompleted, setIsCompleted] = useState(false);
 
-  const [shutterClosed, setShutterClosed] = useState(false);
+  const [hudFadeOut, setHudFadeOut] = useState(false);
   const [laserState, setLaserState] = useState('');
   const [pointState, setPointState] = useState('');
   const [rippleActive, setRippleActive] = useState(false);
   const [circumferenceExpand, setCircumferenceExpand] = useState(false);
-  const [destPageActive, setDestPageActive] = useState(false);
+  const [overlayFade, setOverlayFade] = useState(false);
   const [isAnimationDone, setIsAnimationDone] = useState(false);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function LoadingScreen({ children, onComplete, onLoaded }) {
 
   useEffect(() => {
     const tTitle = "ANUIX HUB";
-    const tSub = "[ WEB CORE ENVIRONMENT // V 1.0 ]";
+    const tSub = "[ WEB CORE ENVIRONMENT // V 1.2 ]";
     let i = 0, j = 0;
 
     const intervalTitle = setInterval(() => {
@@ -117,7 +117,7 @@ export default function LoadingScreen({ children, onComplete, onLoaded }) {
     if (!isCompleted) return;
 
     const t1 = setTimeout(() => {
-      setShutterClosed(true);
+      setHudFadeOut(true);
 
       const t2 = setTimeout(() => {
         setLaserState('flash');
@@ -129,145 +129,136 @@ export default function LoadingScreen({ children, onComplete, onLoaded }) {
           const t4 = setTimeout(() => {
             setPointState('kinetic-drop');
 
-            // Impacto en el suelo
             const t5 = setTimeout(() => {
               setPointState('hidden');
               setRippleActive(true);
 
               const t6 = setTimeout(() => {
                 setCircumferenceExpand(true);
-                setDestPageActive(true);
+                setOverlayFade(true);
 
                 const t7 = setTimeout(() => {
                   setIsAnimationDone(true);
                   if (typeof onComplete === 'function') onComplete();
                   if (typeof onLoaded === 'function') onLoaded();
-                }, 1050);
+                }, 1000);
 
                 return () => clearTimeout(t7);
-              }, 280);
+              }, 260);
 
               return () => clearTimeout(t6);
             }, 850);
 
-            return () => clearTimeout(t4);
-          }, 260);
+            return () => clearTimeout(t5);
+          }, 320);
 
-          return () => clearTimeout(t3);
-        }, 280);
+          return () => clearTimeout(t4);
+        }, 300);
 
-        return () => clearTimeout(t2);
-      }, 450);
+        return () => clearTimeout(t3);
+      }, 1000);
 
-      return () => clearTimeout(t1);
-    }, 2400);
+      return () => clearTimeout(t2);
+    }, 1300);
 
     return () => clearTimeout(t1);
   }, [isCompleted, onComplete, onLoaded]);
 
-  if (isAnimationDone) {
-    return (
+  return (
+    <div className="anuix-app-root">
       <main className="anuix-main-site">
         {children}
       </main>
-    );
-  }
 
-  return (
-    <div className="anuix-loader-container">
-      <div className="bg-grid"></div>
+      {!isAnimationDone && (
+        <div className={`anuix-loader-overlay ${hudFadeOut ? 'dark-mode' : ''} ${overlayFade ? 'fade-out' : ''}`}>
+          <div className="bg-grid"></div>
 
-      <div id="splash-intro" className={splashFade ? 'fade-out' : ''}>
-        <div className="typewriter-title">
-          <span>{titleText}</span>
-          {!subText && <span className="type-cursor" />}
-        </div>
-        <div className="typewriter-sub">
-          <span>{subText}</span>
-          {subText && <span className="type-cursor sub-cursor" />}
-        </div>
-      </div>
-
-      <div className={`hud-grid ${hudOpened ? 'opened' : ''}`}>
-        <div className="hud-box box-header">
-          <div className="tab-handle">TAB:00 // SYS_TELEMETRY</div>
-          <div className="tag">APP: <strong>ANUIX // RUNTIME</strong></div>
-          <div className="tag">PLUGINS: <strong>{activePlugins}/8 ACTIVES</strong></div>
-          <div className="tag">PULSE: <span>{clock}</span></div>
-        </div>
-
-        <div className="hud-box box-canvas">
-          <div className="tab-handle">TAB:01 // NANO_SYNTHESIS</div>
-          <NanoCanvas />
-        </div>
-
-        <div className="hud-box box-shell">
-          <div className="tab-handle">TAB:02 // DEV_SHELL</div>
-          <div className="shell-inner">
-            <div className="shell-bar">
-              <span>WEB SYSTEM LOGS</span>
-              <span>READY STATE: PREPARING</span>
+          <div id="splash-intro" className={splashFade ? 'fade-out' : ''}>
+            <div className="typewriter-title">
+              <span>{titleText}</span>
+              {!subText && <span className="type-cursor" />}
             </div>
-            <div className="shell-content">
-              {logs.map((log, idx) => (
-                <div key={idx} className="terminal-row">
-                  <span className={`status-pill ${log.pill}`}>{log.type}</span>
-                  <span>{log.msg}</span>
+            <div className="typewriter-sub">
+              <span>{subText}</span>
+              {subText && <span className="type-cursor sub-cursor" />}
+            </div>
+          </div>
+
+          <div className={`hud-grid ${hudOpened ? 'opened' : ''} ${hudFadeOut ? 'hud-hidden' : ''}`}>
+            <div className="hud-box box-header">
+              <div className="tab-handle">TAB:00 // SYS_TELEMETRY</div>
+              <div className="tag">APP: <strong>ANUIX // RUNTIME</strong></div>
+              <div className="tag">PLUGINS: <strong>{activePlugins}/8 ACTIVES</strong></div>
+              <div className="tag">PULSE: <span>{clock}</span></div>
+            </div>
+
+            <div className="hud-box box-canvas">
+              <div className="tab-handle">TAB:01 // NANO_SYNTHESIS</div>
+              <NanoCanvas />
+            </div>
+
+            <div className="hud-box box-shell">
+              <div className="tab-handle">TAB:02 // DEV_SHELL</div>
+              <div className="shell-inner">
+                <div className="shell-bar">
+                  <span>WEB SYSTEM LOGS</span>
+                  <span>READY STATE: PREPARING</span>
                 </div>
-              ))}
-              <span className="shell-cursor" />
-            </div>
-          </div>
-        </div>
-
-        <div className="hud-box box-bottom">
-          <div className="tab-handle">TAB:03 // LOADER_CORE</div>
-          <div className="progress-meta">
-            <div>
-              <div style={{ fontSize: 10, color: '#888', marginBottom: 4 }}>
-                {isCompleted ? "SYSTEM STATUS: AUTENTICATED" : "COMPILING ASSETS & PLUGINS"}
-              </div>
-              <div className="status-text">
-                {isCompleted ? (
-                  <span className="welcome-pill">[ ACCESS GRANTED // WELCOME TO ANUIX HUB ]</span>
-                ) : (
-                  statusMsg
-                )}
+                <div className="shell-content">
+                  {logs.map((log, idx) => (
+                    <div key={idx} className="terminal-row">
+                      <span className={`status-pill ${log.pill}`}>{log.type}</span>
+                      <span>{log.msg}</span>
+                    </div>
+                  ))}
+                  <span className="shell-cursor" />
+                </div>
               </div>
             </div>
-            <div className="status-percent">
-              <span>{progress < 10 ? `0${progress}` : progress}</span>%
+
+            <div className="hud-box box-bottom">
+              <div className="tab-handle">TAB:03 // LOADER_CORE</div>
+              <div className="progress-meta">
+                <div>
+                  <div style={{ fontSize: 10, color: '#888', marginBottom: 4 }}>
+                    {isCompleted ? "SYSTEM STATE: AUTENTICATED" : "COMPILING ASSETS & PLUGINS"}
+                  </div>
+                  <div className="status-text">
+                    {isCompleted ? (
+                      <span className="welcome-pill">[ ACCESS GRANTED // WELCOME TO ANUIX HUB ]</span>
+                    ) : (
+                      statusMsg
+                    )}
+                  </div>
+                </div>
+                <div className="status-percent">
+                  <span>{progress < 10 ? `0${progress}` : progress}</span>%
+                </div>
+              </div>
+              <div className="progress-rail">
+                <div className="progress-bar" style={{ width: `${progress}%` }} />
+              </div>
             </div>
           </div>
-          <div className="progress-rail">
-            <div className="progress-bar" style={{ width: `${progress}%` }} />
+
+          <div id="laser-beam" className={laserState} />
+
+          <div 
+            id="laser-singularity" 
+            className={pointState} 
+            style={{ opacity: pointState === 'hidden' ? 0 : undefined }} 
+          />
+
+          <div id="ripple-container" className={rippleActive ? 'active' : ''}>
+            <div className="ripple-wave wave-1" />
+            <div className="ripple-wave wave-2" />
+            <div className="ripple-wave wave-3" />
           </div>
+
+          <div id="main-circumference" className={circumferenceExpand ? 'expand' : ''} />
         </div>
-      </div>
-
-      <div id="shutter-gate" className={shutterClosed ? 'closed' : ''}>
-        <div className="shutter-panel shutter-top" />
-        <div className="shutter-panel shutter-bottom" />
-      </div>
-
-      <div id="laser-beam" className={laserState} />
-      <div 
-        id="laser-singularity" 
-        className={pointState} 
-        style={{ opacity: pointState === 'hidden' ? 0 : undefined }} 
-      />
-
-      <div id="ripple-container" className={rippleActive ? 'active' : ''}>
-        <div className="ripple-wave wave-1" />
-        <div className="ripple-wave wave-2" />
-        <div className="ripple-wave wave-3" />
-      </div>
-
-      <div id="main-circumference" className={circumferenceExpand ? 'expand' : ''} />
-
-      <div id="dest-reveal-circle" className={destPageActive ? 'active' : ''}>
-        {children}
-      </div>
+      )}
     </div>
   );
 }
