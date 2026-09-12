@@ -1,7 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import './css/Navbar.css';
 
 export default function Navbar({ lang, setLang, theme, toggleTheme }) {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const settingsRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (settingsRef.current && !settingsRef.current.contains(event.target)) {
+        setIsSettingsOpen(false);
+      }
+    };
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setIsSettingsOpen(false);
+      }
+    };
+
+    if (isSettingsOpen) {
+      document.addEventListener('pointerdown', handleClickOutside);
+      document.addEventListener('keydown', handleKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener('pointerdown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isSettingsOpen]);
 
   const navLabels = {
     es: {
@@ -9,22 +35,24 @@ export default function Navbar({ lang, setLang, theme, toggleTheme }) {
       about: 'Sobre mí',
       portfolio: 'Portafolio',
       contact: 'Contacto',
-      cv: 'Ver CV',
+      cv: 'CV',
       settings: 'Ajustes',
-      langLabel: 'Idioma',
-      themeLabel: 'Tema',
+      cfgHeader: 'PREFERENCIAS // SYS',
+      langLabel: 'IDIOMA',
+      themeLabel: 'TEMA',
       dark: 'Oscuro',
       light: 'Claro',
     },
     en: {
       home: 'Home',
-      about: 'About me',
+      about: 'About',
       portfolio: 'Portfolio',
       contact: 'Contact',
-      cv: 'View CV',
+      cv: 'CV',
       settings: 'Settings',
-      langLabel: 'Language',
-      themeLabel: 'Theme',
+      cfgHeader: 'PREFERENCES // SYS',
+      langLabel: 'LANGUAGE',
+      themeLabel: 'THEME',
       dark: 'Dark',
       light: 'Light',
     },
@@ -34,49 +62,60 @@ export default function Navbar({ lang, setLang, theme, toggleTheme }) {
 
   return (
     <header className="anuix-navbar">
-      {/* 1. SECCIÓN IZQUIERDA: Enlace a Inicio */}
       <div className="nav-left">
         <a href="#hero" className="nav-logo">
           <span className="logo-bracket">[</span>
           <span className="logo-text">anuixdev</span>
-          <span className="logo-dot"></span>
+          <span className="logo-dot" />
           <span className="logo-bracket">]</span>
         </a>
       </div>
 
-      {/* 2. SECCIÓN CENTRAL: Navegación principal */}
       <nav className="nav-center">
-        <ul className="nav-links">
-          <li><a href="#hero" className="nav-link active">{t.home}</a></li>
-          <li><a href="#sobre-mi" className="nav-link">{t.about}</a></li>
-          <li><a href="#portafolio" className="nav-link">{t.portfolio}</a></li>
-          <li><a href="#contacto" className="nav-link">{t.contact}</a></li>
-          <li>
-            <a 
-              href="/cv.pdf" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="nav-link nav-cv-btn"
-            >
-              {t.cv}
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M7 17L17 7M17 7H7M17 7V17" />
-              </svg>
-            </a>
-          </li>
-        </ul>
+        <div className="nav-dock">
+          <a href="#hero" className="nav-dock-item active">
+            <span className="nav-active-pip" />
+            <span>{t.home}</span>
+          </a>
+
+          <a href="#sobre-mi" className="nav-dock-item">
+            <span>{t.about}</span>
+          </a>
+
+          <a href="#portafolio" className="nav-dock-item">
+            <span>{t.portfolio}</span>
+          </a>
+
+          <a href="#contacto" className="nav-dock-item">
+            <span>{t.contact}</span>
+          </a>
+
+          <span className="nav-dock-divider" />
+
+          <a 
+            href="/cv.pdf" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="nav-dock-item nav-cv-chip"
+          >
+            <span>{t.cv}</span>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M7 17L17 7M17 7H7M17 7V17" />
+            </svg>
+          </a>
+        </div>
       </nav>
 
-      {/* 3. SECCIÓN DERECHA: Menú de Ajustes (ES/EN y Tema) */}
       <div className="nav-right">
-        <div className="settings-wrapper">
+        <div className="settings-wrapper" ref={settingsRef}>
           <button 
+            type="button"
             className={`settings-trigger ${isSettingsOpen ? 'open' : ''}`}
-            onClick={() => setIsSettingsOpen(!isSettingsOpen)}
+            onClick={() => setIsSettingsOpen((prev) => !prev)}
             title={t.settings}
-            aria-label={t.settings}
+            aria-expanded={isSettingsOpen}
           >
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="12" cy="12" r="3" />
               <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
             </svg>
@@ -84,30 +123,31 @@ export default function Navbar({ lang, setLang, theme, toggleTheme }) {
           </button>
 
           {isSettingsOpen && (
-            <div className="settings-dropdown">
-              <div className="dropdown-row">
-                <span className="dropdown-label">{t.langLabel}</span>
-                <div className="segmented-control">
-                  <button 
-                    className={`segment-btn ${lang === 'es' ? 'active' : ''}`}
-                    onClick={() => setLang('es')}
-                  >
-                    ES
-                  </button>
-                  <button 
-                    className={`segment-btn ${lang === 'en' ? 'active' : ''}`}
-                    onClick={() => setLang('en')}
-                  >
-                    EN
-                  </button>
-                </div>
+            <div className="settings-dropdown" role="menu">
+              <div className="dropdown-meta-bar">
+                <span>{t.cfgHeader}</span>
+                <span className="meta-dot" />
               </div>
 
-              <div className="dropdown-divider"></div>
+              <div className="dropdown-row">
+                <span className="dropdown-label">{t.langLabel}</span>
+                <button 
+                  type="button"
+                  className="segmented-control"
+                  onClick={() => setLang((prev) => (prev === 'es' ? 'en' : 'es'))}
+                  aria-label={`Cambiar idioma. Actual: ${lang.toUpperCase()}`}
+                >
+                  <span className={`segment-indicator ${lang}`} />
+                  <span className={`segment-label ${lang === 'es' ? 'active' : ''}`}>ES</span>
+                  <span className={`segment-label ${lang === 'en' ? 'active' : ''}`}>EN</span>
+                </button>
+              </div>
+
+              <div className="dropdown-divider" />
 
               <div className="dropdown-row">
                 <span className="dropdown-label">{t.themeLabel}</span>
-                <button className="theme-toggle-btn" onClick={toggleTheme}>
+                <button type="button" className="theme-toggle-btn" onClick={toggleTheme}>
                   {theme === 'dark' ? (
                     <>
                       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
