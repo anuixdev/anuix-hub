@@ -16,7 +16,7 @@ export function PreferencesProvider({ children }) {
       if (saved) return saved;
       return document.documentElement.classList.contains('light-theme') ? 'light' : 'dark';
     }
-    return 'dark';
+    return 'light';
   });
 
   useEffect(() => {
