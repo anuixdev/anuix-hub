@@ -1,0 +1,124 @@
+.site-master-footer {
+  width: 100%;
+  background: var(--bg-card, #0e0e13);
+  border-top: 1px solid var(--border-color, rgba(255, 255, 255, 0.12));
+  padding: 60px 40px 30px 40px;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.light-theme .site-master-footer {
+  background: #ffffff;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-columns-grid {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+}
+
+.footer-brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-decoration: none;
+  color: var(--text-primary, #ffffff);
+  margin-bottom: 12px;
+}
+
+.footer-brand-tagline {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary, #94a3b8);
+  max-width: 380px;
+  margin: 0 0 16px 0;
+}
+
+.footer-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  background: var(--bg-primary, #08080b);
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.12));
+  border-radius: 4px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  color: var(--text-muted, #64748b);
+  letter-spacing: 1px;
+}
+
+.status-ping {
+  width: 5px;
+  height: 5px;
+  background: #22c55e;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #22c55e;
+}
+
+.footer-col-title {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--accent-tech, #fbbf24);
+  margin: 0 0 16px 0;
+}
+
+.footer-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-nav-list a {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  color: var(--text-secondary, #94a3b8);
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+.footer-nav-list a:hover {
+  color: var(--text-primary, #ffffff);
+}
+
+.footer-bottom-bar {
+  padding-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.footer-copyright-text {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--text-muted, #64748b);
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .site-master-footer {
+    padding: 50px 20px 24px 20px;
+  }
+  .footer-columns-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}

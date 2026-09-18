@@ -1,14 +1,21 @@
 import React from 'react';
-import Loader from './components/LoadingScreen.jsx';
-import Hero from './components/Hero.jsx';
-import NavBar from './components/Navbar.jsx'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { PreferencesProvider } from './context/PreferencesContext.jsx';
+import Loader from './components/templates/LoadingScreen.jsx';
+import Hero from './components/templates/Hero.jsx';
+import Anuix from './components/templates/Anuix.jsx';
 
-function App() {
+export default function App() {
   return (
-    <Loader>
-      <Hero />
-    </Loader>
+    <PreferencesProvider>
+      <BrowserRouter>
+        <Loader>
+          <Routes>
+            <Route path="/" element={<Hero />} />
+            <Route path="/sobre-mi" element={<Anuix />} />
+          </Routes>
+        </Loader>
+      </BrowserRouter>
+    </PreferencesProvider>
   );
 }
-
-export default App;

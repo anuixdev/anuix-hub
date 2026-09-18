@@ -1,127 +1,68 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar.jsx';
 import ProfileCard from './ProfileCard.jsx';
-import profileImg from '../assets/images/profile.png';
-import './css/Hero.css';
+import Projects from './Projects.jsx';
+import TechStack from './TechStack.jsx';
+import Footer from './Footer.jsx';
+import ScrollToTop from './ScrollToTop.jsx';
+import { usePreferences } from '../../context/PreferencesContext.jsx';
+import { HERO_PHRASES, HERO_CONTENT } from '../../data/siteData.js';
+import profileImg from '../../assets/images/profile.png';
+import '../css/Hero.css';
 
 export default function Hero() {
-  const [lang, setLang] = useState('es');
-  const [theme, setTheme] = useState('light');
-
-  const phrases = {
-    es: [
-      'Desarrollador de Software e IA',
-      'Ingeniero Informático',
-      'Arquitecto de Sistemas',
-      'Practicante de Modelos Inteligentes',
-      'Fanático de Inteligencia Artificial'
-    ],
-    en: [
-      'Software & AI Engineer',
-      'Computer Engineer',
-      'Systems Architect',
-      'Machine Learning Practitioner',
-      'Artificial Intelligence Fanatic'
-    ]
-  };
-
+  const { lang, theme } = usePreferences();
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const myEmail = 'anuix.dev@gmail.com';
+  const t = HERO_CONTENT[lang];
+  const currentList = HERO_PHRASES[lang];
+  const currentPhrase = currentList[phraseIndex % currentList.length];
+  const displayedRole = currentPhrase.substring(0, charIndex);
 
   useEffect(() => {
-    const currentList = phrases[lang];
-    const currentPhrase = currentList[phraseIndex % currentList.length];
-
     let timer;
     if (!isDeleting && charIndex < currentPhrase.length) {
-      timer = setTimeout(() => setCharIndex(prev => prev + 1), 60);
+      timer = setTimeout(() => setCharIndex((prev) => prev + 1), 60);
     } else if (!isDeleting && charIndex === currentPhrase.length) {
       timer = setTimeout(() => setIsDeleting(true), 2000);
     } else if (isDeleting && charIndex > 0) {
-      timer = setTimeout(() => setCharIndex(prev => prev - 1), 30);
+      timer = setTimeout(() => setCharIndex((prev) => prev - 1), 30);
     } else if (isDeleting && charIndex === 0) {
       setIsDeleting(false);
-      setPhraseIndex(prev => (prev + 1) % currentList.length);
+      setPhraseIndex((prev) => (prev + 1) % currentList.length);
     }
-
     return () => clearTimeout(timer);
-  }, [charIndex, isDeleting, phraseIndex, lang]);
+  }, [charIndex, isDeleting, phraseIndex, currentList, currentPhrase]);
 
-  useEffect(() => {
-    if (theme === 'light') {
-      document.documentElement.classList.add('light-theme');
-    } else {
-      document.documentElement.classList.remove('light-theme');
-    }
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(myEmail);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2200);
   };
-
-  const content = {
-    es: {
-      cardTitle: 'Ingeniero Informático',
-      cardModule: 'MOD:01 // BIO-IDENT',
-      consoleModule: 'MOD:02 // EXEC_CORE',
-      statusBadge: 'SISTEMA ONLINE // DISPONIBLE',
-      greeting: 'EN EL MUNDO DE LA INFORMÁTICA ME LLAMO',
-      telemetryLoc: 'España // Presencial • Híbrido',
-      telemetryFocus: 'React • Node • Python • JavaScript • Y más...',
-      primaryCta: 'MI VIAJE',
-
-    },
-    en: {
-      cardTitle: 'Computer Engineer',
-      cardModule: 'MOD:01 // BIO-IDENT',
-      consoleModule: 'MOD:02 // EXEC_CORE',
-      statusBadge: 'SYSTEM ONLINE // AVAILABLE',
-      greeting: 'IN THE WORLD OF COMPUTING I GO BY',
-      telemetryLoc: 'Spain // Presencial • Hybrid',
-      telemetryFocus: 'React • Node • Python • JavaScript • And More...',
-      primaryCta: 'MY JOURNEY',
-    },
-  };
-
-  const t = content[lang];
-  const displayedRole = phrases[lang][phraseIndex % phrases[lang].length].substring(0, charIndex);
 
   const handleScrollDown = () => {
-    window.scrollTo({
-      top: window.innerHeight,
-      behavior: 'smooth',
-    });
-  };
-
-  const handleContact = () => {
-    const section = document.getElementById('contacto');
-    if (section) section.scrollIntoView({ behavior: 'smooth' });
+    const nextSection = document.getElementById('portafolio');
+    if (nextSection) nextSection.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
     <div className="hero-page-wrapper">
-      <Navbar 
-        lang={lang} 
-        setLang={setLang} 
-        theme={theme} 
-        toggleTheme={toggleTheme} 
-      />
+      <Navbar currentPage="home" />
 
       <section id="hero" className="hero-viewport">
-        <div className="hero-shape-grid" />
-
         <div className="hud-corner top-left">┌</div>
         <div className="hud-corner top-right">┐</div>
         <div className="hud-corner bottom-left">└</div>
         <div className="hud-corner bottom-right">┘</div>
 
-        <div className="hero-console-deck">
-          
+        <div className="hero-console-deck page-module-enter">
           <div className="deck-card-slot">
             <div className="slot-telemetry-header">
               <span className="slot-tag">{t.cardModule}</span>
-              <span className="slot-spec">ID: ANX-904</span>
             </div>
 
             <ProfileCard
@@ -130,11 +71,7 @@ export default function Hero() {
               avatarUrl={profileImg}
               iconUrl="/assets/demo/iconpattern.png"
               behindGlowEnabled
-              behindGlowColor={
-                theme === 'dark' 
-                  ? 'rgba(251, 191, 36, 0.4)' 
-                  : 'rgba(234, 88, 12, 0.22)'
-              }
+              behindGlowColor={theme === 'dark' ? 'rgba(251, 191, 36, 0.4)' : 'rgba(234, 88, 12, 0.25)'}
               innerGradient={
                 theme === 'dark'
                   ? 'linear-gradient(145deg, #181308c0 0%, #291d06aa 100%)'
@@ -142,10 +79,8 @@ export default function Hero() {
               }
             />
           </div>
-          
 
           <div className="deck-terminal-slot">
-            
             <div className="console-window">
               <div className="console-titlebar">
                 <div className="console-tab">
@@ -169,8 +104,6 @@ export default function Hero() {
                   <span className="type-caret" aria-hidden="true" />
                 </div>
 
-                <p className="console-description">{t.description}</p>
-
                 <div className="console-telemetry-grid">
                   <div className="telemetry-item">
                     <span className="telemetry-label">LOC //</span>
@@ -189,24 +122,27 @@ export default function Hero() {
                       <path d="M5 12h14M12 5l7 7-7 7" />
                     </svg>
                   </a>
+
+                  <a href="#contacto" className="hero-btn secondary-btn">
+                    <span>{t.secondaryCta}</span>
+                  </a>
                 </div>
               </div>
 
               <div className="console-footer">
-                <span>TERMINAL_SYS: V1.2_ACTIVE</span>
+                <span>TERMINAL_SYS: V2.0_ACTIVE</span>
                 <span>ENC: SHA-256</span>
               </div>
             </div>
-
           </div>
-
         </div>
 
         <div className="scroll-indicator-container">
           <button 
+            type="button"
             className="scroll-square-btn" 
             onClick={handleScrollDown}
-            aria-label="Ir a la siguiente sección"
+            aria-label="Ir a proyectos"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M12 5v14M19 12l-7 7-7-7" />
@@ -214,6 +150,46 @@ export default function Hero() {
           </button>
         </div>
       </section>
+
+      <Projects lang={lang} />
+      <TechStack lang={lang} />
+
+      <section id="contacto" className="content-section">
+        <div className="section-container page-module-enter">
+          <div className="contact-terminal-frame">
+            <div className="contact-header-bar">
+              <span className="contact-tag-badge">{t.contactTag}</span>
+              <span className="contact-status-ping">{t.status}</span>
+            </div>
+
+            <div className="contact-core-content">
+              <h2 className="contact-big-heading">{t.contactTitle}</h2>
+              <p className="contact-explain">{t.contactSubtitle}</p>
+
+              <div className="contact-ctas-wrapper">
+                <a href={`mailto:${myEmail}`} className="hero-btn primary-btn">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                    <polyline points="22,6 12,13 2,6" />
+                  </svg>
+                  <span>{t.sendMail}</span>
+                </a>
+
+                <button type="button" onClick={handleCopyEmail} className="hero-btn secondary-btn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                  </svg>
+                  <span>{copied ? t.mailCopied : t.copyMail}</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer lang={lang} />
+      <ScrollToTop theme={theme} />
     </div>
   );
 }

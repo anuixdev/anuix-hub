@@ -1,16 +1,62 @@
-* {
-  box-sizing: border-box;
+:root {
+  color-scheme: dark;
+  --font-sans: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Share Tech Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+html.light-theme {
+  color-scheme: light;
+}
+
+html,
+body {
   margin: 0;
   padding: 0;
-}
-
-body {
-  min-height: 100vh;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  color: #111827;
-  background-color: #ffffff;
-}
-
-#root {
   width: 100%;
+  min-height: 100%;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  margin-top: 0;
+}
+
+p, span, a, li {
+  font-family: var(--font-sans);
+}
+
+code,
+pre,
+.nav-logo,
+.nav-dock-item,
+.settings-trigger,
+.settings-dropdown,
+.section-tag,
+.project-id-badge,
+.status-badge-chip,
+.tech-pill,
+.stack-tag-pill,
+.card-action-btn,
+.console-prefix,
+.console-role-line,
+.telemetry-item,
+.footer-status-pill,
+.footer-copyright-text,
+.back-top-trigger,
+.scroll-top-fab {
+  font-family: var(--font-mono);
 }

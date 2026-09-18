@@ -4,7 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>anuixdev</title>
-    <link rel="icon" type="image/svg+xml" href="./src/assets/images/icons/react.svg" />
+    <link rel="icon" type="image/svg+xml" href="./src/assets/images/icons/dark_header.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem('anuix-theme');
+        if (theme === 'light') {
+          document.documentElement.classList.add('light-theme');
+        } else {
+          document.documentElement.classList.remove('light-theme');
+        }
+      } catch (e) {}
+    })();
+  </script>
   </head>
   <body>
     <div id="root"></div>

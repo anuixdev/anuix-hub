@@ -171,6 +171,11 @@ export default function NanoCanvas() {
       ctx.fillStyle = 'rgba(250, 250, 250, 0.28)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+      const groups = {};
+      for (let j = 0; j < PALETA.length; j++) {
+        groups[PALETA[j]] = [];
+      }
+
       for (let i = 0; i < TOTAL_BOTS; i++) {
         const b = bots[i];
         const p = i / TOTAL_BOTS;
@@ -179,16 +184,28 @@ export default function NanoCanvas() {
         b.tx = tgt.x;
         b.ty = tgt.y;
 
-        let dx = b.tx - b.x;
-        let dy = b.ty - b.y;
+        const dx = b.tx - b.x;
+        const dy = b.ty - b.y;
         b.vx = (b.vx + dx * b.k) * 0.82;
         b.vy = (b.vy + dy * b.k) * 0.82;
         b.x += b.vx + (Math.random() - 0.5) * 0.35;
         b.y += b.vy + (Math.random() - 0.5) * 0.35;
 
-        ctx.fillStyle = b.color;
+        groups[b.color].push(b);
+      }
+
+      for (let j = 0; j < PALETA.length; j++) {
+        const color = PALETA[j];
+        const list = groups[color];
+        if (list.length === 0) continue;
+
+        ctx.fillStyle = color;
         ctx.beginPath();
-        ctx.arc(b.x, b.y, b.size, 0, Math.PI * 2);
+        for (let k = 0; k < list.length; k++) {
+          const b = list[k];
+          ctx.moveTo(b.x + b.size, b.y);
+          ctx.arc(b.x, b.y, b.size, 0, Math.PI * 2);
+        }
         ctx.fill();
       }
 
