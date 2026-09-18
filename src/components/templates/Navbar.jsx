@@ -95,7 +95,9 @@ export default function Navbar({ currentPage }) {
           const timer = setTimeout(() => {
             const el = document.getElementById(targetHash);
             if (el) {
-              el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              const navHeight = 64;
+              const targetY = el.getBoundingClientRect().top + window.scrollY - navHeight;
+              window.scrollTo({ top: targetY, left: 0, behavior: 'smooth' });
             }
             setTimeout(() => {
               isProgrammaticScroll.current = false;
@@ -130,7 +132,10 @@ export default function Navbar({ currentPage }) {
       setActiveSection(targetId);
       isProgrammaticScroll.current = true;
       window.history.pushState(null, '', `#${targetId}`);
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      const navHeight = 64;
+      const targetY = element.getBoundingClientRect().top + window.scrollY - navHeight;
+      window.scrollTo({ top: targetY, left: 0, behavior: 'smooth' });
 
       setTimeout(() => {
         isProgrammaticScroll.current = false;
@@ -141,7 +146,7 @@ export default function Navbar({ currentPage }) {
   const handleGoToAbout = (e) => {
     if (isAboutPage) {
       e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     } else {
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }

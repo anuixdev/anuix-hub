@@ -216,7 +216,20 @@
   box-shadow: 0 0 12px rgba(234, 88, 12, 0.12);
 }
 
-/* Cajetín técnico del icono */
+.settings-dropdown {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: 0;
+  width: 218px;
+  background: var(--bg-card, #0e0e13);
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.14));
+  border-radius: 8px;
+  padding: 13px 15px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+  animation: dropAppear 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  z-index: 1001;
+}
+
 .trigger-icon-box {
   display: flex;
   align-items: center;
@@ -237,7 +250,6 @@
   border-color: rgba(0, 0, 0, 0.06);
 }
 
-/* Icono de engranaje (dimensionado exacto y rotación concéntrica) */
 .gear-icon {
   width: 13px;
   height: 13px;
@@ -304,7 +316,6 @@
   background: rgba(0, 0, 0, 0.06);
 }
 
-/* Segmented Control equilibrado */
 .segmented-control {
   position: relative;
   display: inline-flex;

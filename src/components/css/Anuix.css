@@ -385,13 +385,44 @@ html.light-theme body {
   max-height: 580px;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 24px 28px 24px 10px;
+  padding: 24px 20px;
   background: var(--bg-card, #0e0e13);
   border: 1px solid var(--border-color, rgba(255, 255, 255, 0.12));
   border-radius: 12px;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25), inset 0 0 30px rgba(0, 0, 0, 0.15);
   scrollbar-width: thin;
   scrollbar-color: var(--accent-tech, #fbbf24) var(--bg-primary, #08080b);
+}
+
+.experience-timeline-container {
+  position: relative;
+  padding-left: 32px;
+}
+
+.experience-timeline-spine {
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  left: 7px;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    #22c55e 0%,
+    var(--accent-tech, #fbbf24) 45%,
+    var(--border-color, rgba(255, 255, 255, 0.14)) 85%,
+    transparent 100%
+  );
+}
+
+.experience-timeline-node {
+  position: absolute;
+  top: 24px;
+  left: -32px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .light-theme .experience-scroll-frame {
@@ -424,25 +455,6 @@ html.light-theme body {
   background: var(--accent-tech, #ea580c);
 }
 
-.experience-timeline-container {
-  position: relative;
-  padding-left: 36px;
-}
-
-.experience-timeline-spine {
-  position: absolute;
-  top: 18px;
-  bottom: 18px;
-  left: 9px;
-  width: 2px;
-  background: linear-gradient(
-    180deg,
-    #22c55e 0%,
-    var(--accent-tech, #fbbf24) 45%,
-    var(--border-color, rgba(255, 255, 255, 0.14)) 85%,
-    transparent 100%
-  );
-}
 
 .experience-cards-column {
   display: flex;
@@ -452,17 +464,6 @@ html.light-theme body {
 
 .experience-node-card {
   position: relative;
-}
-
-.experience-timeline-node {
-  position: absolute;
-  top: 24px;
-  left: -36px;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .node-outer-ring {
