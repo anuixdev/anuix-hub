@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { usePreferences } from '../context/PreferencesContext.jsx';
-import { NAV_LABELS } from '../data/siteData.js';
+import { usePreferences } from '../../context/PreferencesContext.jsx';
+import { NAV_LABELS } from '../../data/siteData.js';
 import '../css/Navbar.css';
 
 export default function Navbar({ currentPage }) {
