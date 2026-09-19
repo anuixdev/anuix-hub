@@ -28,7 +28,7 @@ export default function Footer({ lang = 'es' }) {
               <li><a href="#sobre-mi">{t.about}</a></li>
               <li><a href="#portafolio">{t.portfolio}</a></li>
               <li><a href="#contacto">{t.contact}</a></li>
-              <li><a href={lang === 'es' ? 'src/assets/public/CV_Alexandru_Nicolas_Untaru_Ionescu.pdf' : 'src/assets/public/EN_CV_Alexandru_Nicolas_Untaru_Ionescu.pdf'} target="_blank" rel="noopener noreferrer">{t.cv}</a></li>
+              <li><a href={lang === 'es' ? '/CV_Alexandru_Nicolas_Untaru_Ionescu.pdf' : '/EN_CV_Alexandru_Nicolas_Untaru_Ionescu.pdf'} target="_blank" rel="noopener noreferrer">{t.cv}</a></li>
             </ul>
           </div>
 
