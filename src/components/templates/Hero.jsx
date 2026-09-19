@@ -55,7 +55,6 @@ export default function Hero() {
     <div className="hero-page-wrapper">
       <Navbar currentPage="home" />
 
-      {/* El Navbar queda fuera para permanecer fijo sin parpadeos */}
       <main key={location.pathname} className="hero-main-flow page-module-enter">
         <section id="hero" className="hero-viewport">
           <div className="hud-corner top-left">┌</div>
@@ -63,7 +62,6 @@ export default function Hero() {
           <div className="hud-corner bottom-left">└</div>
           <div className="hud-corner bottom-right">┘</div>
 
-          {/* Limpiado: quitamos page-module-enter de aquí para evitar saltos anidados */}
           <div className="hero-console-deck">
             <div className="deck-card-slot">
               <div className="slot-telemetry-header">
@@ -156,7 +154,6 @@ export default function Hero() {
         <TechStack lang={lang} />
 
         <section id="contacto" className="content-section">
-          {/* Limpiado: quitamos page-module-enter de aquí también */}
           <div className="section-container">
             <div className="contact-terminal-frame">
               <div className="contact-header-bar">
