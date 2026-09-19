@@ -11,7 +11,7 @@
     <script>
     (function () {
       try {
-        var theme = localStorage.getItem('anuix-theme');
+        var theme = localStorage.getItem('anuix-theme') || 'light';
         if (theme === 'light') {
           document.documentElement.classList.add('light-theme');
         } else {

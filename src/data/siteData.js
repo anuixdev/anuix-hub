@@ -47,8 +47,7 @@ export const HERO_CONTENT = {
     greeting: 'EN EL MUNDO DE LA INFORMÁTICA ME LLAMO',
     telemetryLoc: 'España // Presencial • Híbrido',
     telemetryFocus: 'React • Node • Python • Java • Y más...',
-    primaryCta: 'Explorar Proyectos',
-    secondaryCta: 'Contactar',
+    primaryCta: 'EJECUTAR WHOAMI',
     contactTag: 'MOD:05 // CANAL DE COMUNICACIÓN',
     status: 'ESTADO: ACTIVO // EN ESCUCHA',
     contactTitle: '¡Hablemos!',
@@ -65,8 +64,7 @@ export const HERO_CONTENT = {
     greeting: 'IN THE WORLD OF COMPUTING I GO BY',
     telemetryLoc: 'Spain // On-site • Hybrid',
     telemetryFocus: 'React • Node • Python • Java • And more...',
-    primaryCta: 'Explore Projects',
-    secondaryCta: 'Get In Touch',
+    primaryCta: 'RUN WHOAMI',
     contactTag: 'MOD:05 // TRANSMISSION GATEWAY',
     status: 'STATUS: ACTIVE // LISTENING',
     contactTitle: 'Get in touch!',
@@ -84,7 +82,7 @@ export const ANUIX_CONTENT = {
     sysId: 'ID: ANX-904',
     heroTitle: 'Alexandru Nicolas Untaru Ionescu',
     heroRole: 'Ingeniero Informático // Software & Inteligencia Artificial',
-    heroBio: 'Ingeniero orientado al desarrollo de sistemas escalables, arquitectura de software y tecnologías de bajo nivel. Construyo software buscando comprender no solo cómo funciona, sino por qué se ejecuta en cada estrato físico del silicio.',
+    heroBio: 'Ingeniero de software centrado en backend, arquitectura de sistemas y bajo nivel. Me interesa entender qué ocurre por debajo de cada capa de abstracción para construir soluciones predecibles, eficientes y fáciles de mantener.',
     telemetry: [
       { key: 'LOC', label: 'LOCALIZACIÓN', val: 'España // Presencial o Híbrido' },
       { key: 'STACK', label: 'ESPECIALIZACIÓN', val: 'Bajo Nivel • Web • Modelos IA • Embebidos' },
@@ -192,7 +190,7 @@ export const ANUIX_CONTENT = {
     sysId: 'ID: ANX-904',
     heroTitle: 'Alexandru Nicolas Untaru Ionescu',
     heroRole: 'Computer Engineer // Software & Artificial Intelligence',
-    heroBio: 'Systems, architecture, and low-level software engineer. I build technology with the goal of understanding not just how things run, but why they execute at every physical silicon boundary.',
+    heroBio: 'Software engineer focused on backend, systems architecture, and low-level development. I care about what happens beneath the abstractions to build predictable, efficient, and maintainable software',
     telemetry: [
       { key: 'LOC', label: 'LOCATION', val: 'Spain // On-site or Hybrid' },
       { key: 'STACK', label: 'SPECIALIZATION', val: 'Low Level • Web • AI Models • Embedded' },
@@ -444,7 +442,7 @@ export const FOOTER_CONTENT = {
     portfolio: 'Portafolio',
     contact: 'Contacto',
     cv: 'Descargar CV',
-    signature: '© 2026 Alexandru Untaru · Código bajo licencia MIT · v2.0',
+    signature: '© 2026 Alexandru Untaru · Código bajo licencia MIT · v2.1',
     core: 'NODO_CENTRAL: EN LÍNEA // ESPAÑA'
   },
   en: {
