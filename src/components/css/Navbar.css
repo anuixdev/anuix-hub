@@ -1,3 +1,25 @@
+.navbar, 
+.nav-dock-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  background: rgba(10, 12, 16, 0.88);
+  
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.light-theme .navbar,
+.light-theme .nav-dock-wrapper {
+  background: rgba(245, 247, 250, 0.90);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
 .anuix-navbar {
   position: fixed;
   top: 0;
