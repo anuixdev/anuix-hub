@@ -47,7 +47,7 @@ export const HERO_CONTENT = {
     greeting: 'EN EL MUNDO DE LA INFORMÁTICA ME LLAMO',
     telemetryLoc: 'España // Presencial • Híbrido',
     telemetryFocus: 'React • Node • Python • Java • Y más...',
-    primaryCta: 'EJECUTAR WHOAMI',
+    primaryCta: 'CÓMO PIENSO Y CONSTRUYO',
     contactTag: 'MOD:05 // CANAL DE COMUNICACIÓN',
     status: 'ESTADO: ACTIVO // EN ESCUCHA',
     contactTitle: '¡Hablemos!',
@@ -64,7 +64,7 @@ export const HERO_CONTENT = {
     greeting: 'IN THE WORLD OF COMPUTING I GO BY',
     telemetryLoc: 'Spain // On-site • Hybrid',
     telemetryFocus: 'React • Node • Python • Java • And more...',
-    primaryCta: 'RUN WHOAMI',
+    primaryCta: 'HOW I THINK & BUILD',
     contactTag: 'MOD:05 // TRANSMISSION GATEWAY',
     status: 'STATUS: ACTIVE // LISTENING',
     contactTitle: 'Get in touch!',
@@ -442,7 +442,7 @@ export const FOOTER_CONTENT = {
     portfolio: 'Portafolio',
     contact: 'Contacto',
     cv: 'Descargar CV',
-    signature: '© 2026 Alexandru Untaru · Código bajo licencia MIT · v2.1',
+    signature: '© 2026 Alexandru Untaru · Código bajo licencia MIT · v2.2',
     core: 'NODO_CENTRAL: EN LÍNEA // ESPAÑA'
   },
   en: {
@@ -454,7 +454,7 @@ export const FOOTER_CONTENT = {
     portfolio: 'Portfolio',
     contact: 'Contact',
     cv: 'Download CV',
-    signature: '© 2026 Alexandru Untaru · Code licensed under MIT · v4.2',
+    signature: '© 2026 Alexandru Untaru · Code licensed under MIT · v2.2',
     core: 'CORE_NODE: ONLINE // SPAIN'
   }
 };

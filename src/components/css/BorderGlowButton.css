@@ -1,0 +1,147 @@
+@property --glow-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+:root {
+  --bgb-bg: #090a0f;
+  --bgb-text: #f8fafc;
+  --bgb-border-base: rgba(255, 255, 255, 0.09);
+  --bgb-stream-head: #ffffff;
+  --bgb-stream-core: #fbbf24;
+  --bgb-stream-tail: #f59e0b;
+  --bgb-aura-glow: rgba(251, 191, 36, 0.6);
+}
+
+.light-theme {
+  --bgb-bg: #ffffff;
+  --bgb-text: #09090e;
+  --bgb-border-base: rgba(0, 0, 0, 0.08);
+  --bgb-stream-head: #ffffff;
+  --bgb-stream-core: #ea580c;
+  --bgb-stream-tail: #c2410c;
+  --bgb-aura-glow: rgba(234, 88, 12, 0.5);
+}
+
+.border-glow-action-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+  box-sizing: border-box;
+  transform: translateY(0);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glow-aura {
+  position: absolute;
+  inset: -4px;
+  border-radius: 12px;
+  background: conic-gradient(
+    from var(--glow-angle),
+    transparent 0deg,
+    var(--bgb-aura-glow) 15deg,
+    transparent 35deg,
+    transparent 180deg,
+    var(--bgb-aura-glow) 195deg,
+    transparent 215deg,
+    transparent 360deg
+  );
+  filter: blur(12px);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  animation: rotateParallelStreams 2.8s linear infinite;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.glow-track {
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  border: 1px solid var(--bgb-border-base);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glow-line {
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  background: conic-gradient(
+    from var(--glow-angle),
+    transparent 0deg,
+    var(--bgb-stream-tail) 6deg,
+    var(--bgb-stream-core) 16deg,
+    var(--bgb-stream-head) 24deg,
+    transparent 28deg,
+    transparent 180deg,
+    var(--bgb-stream-tail) 186deg,
+    var(--bgb-stream-core) 196deg,
+    var(--bgb-stream-head) 204deg,
+    transparent 208deg,
+    transparent 360deg
+  );
+  pointer-events: none;
+  z-index: 2;
+  animation: rotateParallelStreams 2.8s linear infinite;
+}
+
+.glow-surface {
+  position: relative;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 46px;
+  padding: 0 26px;
+  margin: 1.5px;
+  background: var(--bgb-bg);
+  border-radius: 6.5px;
+  color: var(--bgb-text);
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-sizing: border-box;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.glow-surface svg {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  color: var(--bgb-stream-core);
+}
+
+.border-glow-action-btn:hover {
+  transform: translateY(-2px);
+}
+
+.border-glow-action-btn:hover .glow-aura {
+  opacity: 1;
+  filter: blur(18px);
+}
+
+.border-glow-action-btn:hover .glow-surface svg {
+  transform: translateX(4px);
+}
+
+.border-glow-action-btn:active {
+  transform: translateY(0);
+}
+
+@keyframes rotateParallelStreams {
+  0% {
+    --glow-angle: 0deg;
+  }
+  100% {
+    --glow-angle: 360deg;
+  }
+}
