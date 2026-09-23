@@ -9,6 +9,24 @@ export const NAV_LABELS = {
     cfgHeader: 'SYS_CONFIG // PREFERENCIAS',
     langLabel: 'IDIOMA',
     themeLabel: 'TEMA',
+    cvModal: {
+      title: 'DOC_SELECTOR // CV',
+      prompt: '> Elige la versión del documento:',
+      options: [
+        {
+          badge: 'ES',
+          label: 'Versión en Español',
+          meta: 'Curriculum Vitae [PDF]',
+          url: '/CV_Alexandru_Nicolas_Untaru_Ionescu.pdf'
+        },
+        {
+          badge: 'EN',
+          label: 'English Version',
+          meta: 'Resume [PDF]',
+          url: '/EN_CV_Alexandru_Nicolas_Untaru_Ionescu.pdf'
+        }
+      ]
+    }
   },
   en: {
     home: 'Home',
@@ -20,6 +38,24 @@ export const NAV_LABELS = {
     cfgHeader: 'SYS_CONFIG // PREFERENCES',
     langLabel: 'LANGUAGE',
     themeLabel: 'THEME',
+    cvModal: {
+      title: 'DOC_SELECTOR // CV',
+      prompt: '> Select document locale:',
+      options: [
+        {
+          badge: 'ES',
+          label: 'Spanish Version',
+          meta: 'Curriculum Vitae [PDF]',
+          url: '/CV_Alexandru_Nicolas_Untaru_Ionescu.pdf'
+        },
+        {
+          badge: 'EN',
+          label: 'English Version',
+          meta: 'Resume [PDF]',
+          url: '/EN_CV_Alexandru_Nicolas_Untaru_Ionescu.pdf'
+        }
+      ]
+    }
   },
 };
 
@@ -442,8 +478,9 @@ export const FOOTER_CONTENT = {
     portfolio: 'Portafolio',
     contact: 'Contacto',
     cv: 'Descargar CV',
-    signature: '© 2026 Alexandru Untaru · Código bajo licencia MIT · v2.2',
-    core: 'NODO_CENTRAL: EN LÍNEA // ESPAÑA'
+    signature: '© 2026 Alexandru Untaru · Código bajo licencia MIT · v2.3',
+    core: 'NODO_CENTRAL: EN LÍNEA // ESPAÑA',
+    mail: 'Correo Directo'
   },
   en: {
     brandDesc: 'Computer Engineer focused on scalable architectures, concurrent backends, and applied AI models.',
@@ -454,7 +491,8 @@ export const FOOTER_CONTENT = {
     portfolio: 'Portfolio',
     contact: 'Contact',
     cv: 'Download CV',
-    signature: '© 2026 Alexandru Untaru · Code licensed under MIT · v2.2',
-    core: 'CORE_NODE: ONLINE // SPAIN'
+    signature: '© 2026 Alexandru Untaru · Code licensed under MIT · v2.3',
+    core: 'CORE_NODE: ONLINE // SPAIN',
+    mail: 'Direct Mail'
   }
 };

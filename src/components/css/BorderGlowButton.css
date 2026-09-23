@@ -7,21 +7,21 @@
 :root {
   --bgb-bg: #090a0f;
   --bgb-text: #f8fafc;
-  --bgb-border-base: rgba(255, 255, 255, 0.09);
+  --bgb-border-base: rgba(255, 255, 255, 0.12);
   --bgb-stream-head: #ffffff;
   --bgb-stream-core: #fbbf24;
   --bgb-stream-tail: #f59e0b;
-  --bgb-aura-glow: rgba(251, 191, 36, 0.6);
+  --bgb-aura-glow: rgba(251, 191, 36, 0.65);
 }
 
 .light-theme {
   --bgb-bg: #ffffff;
   --bgb-text: #09090e;
-  --bgb-border-base: rgba(0, 0, 0, 0.08);
+  --bgb-border-base: rgba(0, 0, 0, 0.1);
   --bgb-stream-head: #ffffff;
   --bgb-stream-core: #ea580c;
   --bgb-stream-tail: #c2410c;
-  --bgb-aura-glow: rgba(234, 88, 12, 0.5);
+  --bgb-aura-glow: rgba(234, 88, 12, 0.55);
 }
 
 .border-glow-action-btn {
@@ -40,19 +40,19 @@
 
 .glow-aura {
   position: absolute;
-  inset: -4px;
-  border-radius: 12px;
+  inset: -5px;
+  border-radius: 13px;
   background: conic-gradient(
     from var(--glow-angle),
     transparent 0deg,
-    var(--bgb-aura-glow) 15deg,
-    transparent 35deg,
+    var(--bgb-aura-glow) 18deg,
+    transparent 42deg,
     transparent 180deg,
-    var(--bgb-aura-glow) 195deg,
-    transparent 215deg,
+    var(--bgb-aura-glow) 198deg,
+    transparent 222deg,
     transparent 360deg
   );
-  filter: blur(12px);
+  filter: blur(14px);
   opacity: 0;
   pointer-events: none;
   z-index: 0;
@@ -64,7 +64,7 @@
   position: absolute;
   inset: 0;
   border-radius: 8px;
-  border: 1px solid var(--bgb-border-base);
+  border: 1.5px solid var(--bgb-border-base);
   pointer-events: none;
   z-index: 1;
 }
@@ -76,15 +76,15 @@
   background: conic-gradient(
     from var(--glow-angle),
     transparent 0deg,
-    var(--bgb-stream-tail) 6deg,
-    var(--bgb-stream-core) 16deg,
-    var(--bgb-stream-head) 24deg,
-    transparent 28deg,
+    var(--bgb-stream-tail) 8deg,
+    var(--bgb-stream-core) 22deg,
+    var(--bgb-stream-head) 32deg,
+    transparent 38deg,
     transparent 180deg,
-    var(--bgb-stream-tail) 186deg,
-    var(--bgb-stream-core) 196deg,
-    var(--bgb-stream-head) 204deg,
-    transparent 208deg,
+    var(--bgb-stream-tail) 188deg,
+    var(--bgb-stream-core) 202deg,
+    var(--bgb-stream-head) 212deg,
+    transparent 218deg,
     transparent 360deg
   );
   pointer-events: none;
@@ -101,9 +101,9 @@
   gap: 10px;
   height: 46px;
   padding: 0 26px;
-  margin: 1.5px;
+  margin: 2.5px;
   background: var(--bgb-bg);
-  border-radius: 6.5px;
+  border-radius: 5.5px;
   color: var(--bgb-text);
   font-family: var(--font-mono, 'Share Tech Mono', monospace);
   font-size: 12.5px;
@@ -126,7 +126,7 @@
 
 .border-glow-action-btn:hover .glow-aura {
   opacity: 1;
-  filter: blur(18px);
+  filter: blur(20px);
 }
 
 .border-glow-action-btn:hover .glow-surface svg {

@@ -429,6 +429,25 @@
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.primary-btn {
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  border: 1px solid var(--text-primary);
+  font-weight: 700;
+}
+
+.primary-btn:hover {
+  background-color: var(--accent-tech);
+  border-color: var(--accent-tech);
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px var(--accent-glow);
+}
+
+.light-theme .primary-btn:hover {
+  color: #ffffff;
+}
+
 .secondary-btn {
   background-color: var(--bg-card);
   color: var(--text-primary);
