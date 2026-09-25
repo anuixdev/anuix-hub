@@ -478,7 +478,7 @@ export const FOOTER_CONTENT = {
     portfolio: 'Portafolio',
     contact: 'Contacto',
     cv: 'Descargar CV',
-    signature: '© 2026 Alexandru Untaru · Código bajo licencia MIT · v2.3',
+    signature: '© 2026 Alexandru Untaru · Diseñado y construido desde cero con React y CSS modular. Sin plantillas, con criterio de ingeniería · Código bajo licencia MIT · v2.5',
     core: 'NODO_CENTRAL: EN LÍNEA // ESPAÑA',
     mail: 'Correo Directo'
   },
@@ -491,7 +491,7 @@ export const FOOTER_CONTENT = {
     portfolio: 'Portfolio',
     contact: 'Contact',
     cv: 'Download CV',
-    signature: '© 2026 Alexandru Untaru · Code licensed under MIT · v2.3',
+    signature: '© 2026 Alexandru Untaru · Designed and engineered from scratch with React and modular CSS. No templates, strictly engineering-driven · Code licensed under MIT · v2.3',
     core: 'CORE_NODE: ONLINE // SPAIN',
     mail: 'Direct Mail'
   }

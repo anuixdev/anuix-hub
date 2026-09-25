@@ -58,7 +58,7 @@ export default function LoadingScreen({ children, onComplete, onLoaded }) {
     if (!needsLoader) return;
 
     const tTitle = "ANUIX HUB";
-    const tSub = "[ WEB CORE ENVIRONMENT // V 2.3 ]";
+    const tSub = "[ WEB CORE ENVIRONMENT // V 2.5 ]";
     let i = 0;
     let j = 0;
 

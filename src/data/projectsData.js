@@ -42,7 +42,30 @@ export const PROJECTS_DATA = {
                 caption: 'Segmentación de instancias sobre zona de desastre natural y trazado de instancias.' 
               }
             ]
-          }
+          },
+          {
+              id: 'resultados',
+              label: '03 // EVALUACIÓN & MEMORIA',
+              content: [
+                {
+                  type: 'grade',
+                  label: 'CALIFICACIÓN DEL TRIBUNAL',
+                  value: '10.0 / 10.0',
+                  badge: 'SOBRESALIENTE + CANDIDATURA A MATRÍCULA DE HONOR'
+                },
+                {
+                  type: 'quote',
+                  title: 'AUTHOR_LOG // COMENTARIO',
+                  value: 'Este proyecto representó el cierre de mi etapa académica uniendo dos áreas críticas: visión por computador y análisis de grafos en tiempo real. Más allá de entrenar un modelo o ajustar hiperparámetros, el verdadero reto de ingeniería fue diseñar el puente algorítmico entre la inferencia visual y la toma de decisiones: transformar píxeles detectados en vectores de movimiento seguros y deterministas sobre los que un equipo de rescate pueda confiar en una situación crítica.'
+                },
+                {
+                  type: 'document',
+                  url: 'public/Memoria del TFG.pdf',
+                  label: 'Memoria Técnica Completa',
+                  format: 'PDF_DOCUMENT'
+                }
+              ]
+            }
         ]
       },
       {
@@ -144,7 +167,7 @@ export const PROJECTS_DATA = {
             label: '03 // RECONOCIMIENTO',
             content: [
               { 
-                type: 'link',
+                type: 'document',
                 url: 'public/Audi Creativity Challenge _ Carta de reconocimiento Alexandru Nicolas Untaru.pdf', 
                 label: 'Visualizar Reconocimiento obtenido' 
               }
@@ -196,6 +219,29 @@ export const PROJECTS_DATA = {
                 beforeLabel: 'RAW_INPUT',
                 afterLabel: 'PROCESSED_OUTPUT',
                 caption: 'Segmentation of instances over natural disaster area and layout of instances.' 
+              }
+            ]
+          },
+          {
+            id: 'resultados',
+            label: '03 // EVALUATION & THESIS',
+            content: [
+              {
+                type: 'grade',
+                label: 'EXAMINATION BOARD GRADE',
+                value: '10.0 / 10.0',
+                badge: 'MAXIMUM DISTINCTION + APPLICATION FOR ENROLMENT OF HONOUR'
+              },
+              {
+                type: 'quote',
+                title: 'AUTHOR_LOG // STATEMENT',
+                value: 'This project marked the capstone of my academic degree, bridging two critical domains: computer vision and real-time graph pathfinding. Beyond training a model or tuning hyperparameters, the true engineering challenge lay in architecting the algorithmic bridge between visual inference and decision-making: transforming detected pixels into safe, deterministic motion vectors that a rescue unit can rely on in mission-critical scenarios.'
+              },
+              {
+                type: 'document',
+                url: 'public/Memoria del TFG.pdf',
+                label: 'Full Technical Thesis Report',
+                format: 'PDF_DOCUMENT'
               }
             ]
           }
