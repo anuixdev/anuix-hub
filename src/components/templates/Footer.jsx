@@ -107,7 +107,7 @@ export default function Footer({ lang = 'es' }) {
               </li>
               <li>
                 <a href="mailto:alexandru.untaru.dev@gmail.com">
-                  Email Directo ↗
+                  {t.mail} ↗
                 </a>
               </li>
             </ul>

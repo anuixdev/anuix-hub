@@ -9,6 +9,24 @@ export const NAV_LABELS = {
     cfgHeader: 'SYS_CONFIG // PREFERENCIAS',
     langLabel: 'IDIOMA',
     themeLabel: 'TEMA',
+    cvModal: {
+      title: 'DOC_SELECTOR // CV',
+      prompt: '> Elige la versión del documento:',
+      options: [
+        {
+          badge: 'ES',
+          label: 'Versión en Español',
+          meta: 'Curriculum Vitae [PDF]',
+          url: '/CV_Alexandru_Nicolas_Untaru_Ionescu.pdf'
+        },
+        {
+          badge: 'EN',
+          label: 'English Version',
+          meta: 'Resume [PDF]',
+          url: '/EN_CV_Alexandru_Nicolas_Untaru_Ionescu.pdf'
+        }
+      ]
+    }
   },
   en: {
     home: 'Home',
@@ -20,6 +38,24 @@ export const NAV_LABELS = {
     cfgHeader: 'SYS_CONFIG // PREFERENCES',
     langLabel: 'LANGUAGE',
     themeLabel: 'THEME',
+    cvModal: {
+      title: 'DOC_SELECTOR // CV',
+      prompt: '> Select document locale:',
+      options: [
+        {
+          badge: 'ES',
+          label: 'Spanish Version',
+          meta: 'Curriculum Vitae [PDF]',
+          url: '/CV_Alexandru_Nicolas_Untaru_Ionescu.pdf'
+        },
+        {
+          badge: 'EN',
+          label: 'English Version',
+          meta: 'Resume [PDF]',
+          url: '/EN_CV_Alexandru_Nicolas_Untaru_Ionescu.pdf'
+        }
+      ]
+    }
   },
 };
 
@@ -47,7 +83,7 @@ export const HERO_CONTENT = {
     greeting: 'EN EL MUNDO DE LA INFORMÁTICA ME LLAMO',
     telemetryLoc: 'España // Presencial • Híbrido',
     telemetryFocus: 'React • Node • Python • Java • Y más...',
-    primaryCta: 'EJECUTAR WHOAMI',
+    primaryCta: 'CÓMO PIENSO Y CONSTRUYO',
     contactTag: 'MOD:05 // CANAL DE COMUNICACIÓN',
     status: 'ESTADO: ACTIVO // EN ESCUCHA',
     contactTitle: '¡Hablemos!',
@@ -64,7 +100,7 @@ export const HERO_CONTENT = {
     greeting: 'IN THE WORLD OF COMPUTING I GO BY',
     telemetryLoc: 'Spain // On-site • Hybrid',
     telemetryFocus: 'React • Node • Python • Java • And more...',
-    primaryCta: 'RUN WHOAMI',
+    primaryCta: 'HOW I THINK & BUILD',
     contactTag: 'MOD:05 // TRANSMISSION GATEWAY',
     status: 'STATUS: ACTIVE // LISTENING',
     contactTitle: 'Get in touch!',
@@ -442,8 +478,9 @@ export const FOOTER_CONTENT = {
     portfolio: 'Portafolio',
     contact: 'Contacto',
     cv: 'Descargar CV',
-    signature: '© 2026 Alexandru Untaru · Código bajo licencia MIT · v2.1',
-    core: 'NODO_CENTRAL: EN LÍNEA // ESPAÑA'
+    signature: '© 2026 Alexandru Untaru · Diseñado y construido desde cero con React y CSS modular. Sin plantillas, con criterio de ingeniería · Código bajo licencia MIT · v2.5',
+    core: 'NODO_CENTRAL: EN LÍNEA // ESPAÑA',
+    mail: 'Correo Directo'
   },
   en: {
     brandDesc: 'Computer Engineer focused on scalable architectures, concurrent backends, and applied AI models.',
@@ -454,7 +491,8 @@ export const FOOTER_CONTENT = {
     portfolio: 'Portfolio',
     contact: 'Contact',
     cv: 'Download CV',
-    signature: '© 2026 Alexandru Untaru · Code licensed under MIT · v4.2',
-    core: 'CORE_NODE: ONLINE // SPAIN'
+    signature: '© 2026 Alexandru Untaru · Designed and engineered from scratch with React and modular CSS. No templates, strictly engineering-driven · Code licensed under MIT · v2.3',
+    core: 'CORE_NODE: ONLINE // SPAIN',
+    mail: 'Direct Mail'
   }
 };

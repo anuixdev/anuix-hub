@@ -1,3 +1,9 @@
+@property --glow-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
 :root {
   --bg-primary: #08080b;
   --bg-card: #0e0e13;
@@ -8,8 +14,13 @@
   --text-secondary: #94a3b8;
   --text-muted: #b6bdc5;
   --accent-tech: #fbbf24;        
-  --accent-glow: rgba(251, 191, 36, 0.15);
+  --accent-glow: rgba(251, 191, 36, 0.18);
   --grid-line: rgba(255, 255, 255, 0.04);
+  --grad-c1: #fbbf24;
+  --grad-c2: #22c55e;
+  --grad-c3: #00f0ff;
+  --grad-c4: #f59e0b;
+  --btn-inner-bg: #0b0c10;
 }
 
 .light-theme {
@@ -22,8 +33,13 @@
   --text-secondary: #475569;
   --text-muted: #44474a;
   --accent-tech: #ea580c;        
-  --accent-glow: rgba(234, 88, 12, 0.12);
+  --accent-glow: rgba(234, 88, 12, 0.15);
   --grid-line: rgba(0, 0, 0, 0.05);
+  --grad-c1: #ea580c;
+  --grad-c2: #16a34a;
+  --grad-c3: #0284c7;
+  --grad-c4: #f97316;
+  --btn-inner-bg: #ffffff;
 }
 
 .hero-page-wrapper {
@@ -68,6 +84,7 @@
   pointer-events: none;
   z-index: 2;
 }
+
 .hud-corner.top-left { top: 80px; left: 32px; }
 .hud-corner.top-right { top: 80px; right: 32px; }
 .hud-corner.bottom-left { bottom: 30px; left: 32px; }
@@ -297,8 +314,103 @@
 
 .console-actions {
   display: flex;
-  gap: 14px;
+  align-items: center;
+  gap: 16px;
   flex-wrap: wrap;
+}
+
+.gradient-glow-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.8px;
+  text-decoration: none;
+  background: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  box-sizing: border-box;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gradient-glow-btn::before,
+.gradient-glow-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--glow-angle),
+    var(--grad-c1),
+    var(--grad-c2),
+    var(--grad-c3),
+    var(--grad-c4),
+    var(--grad-c1)
+  );
+  animation: spinGradient 3.5s linear infinite;
+}
+
+.gradient-glow-btn::before {
+  filter: blur(12px);
+  opacity: 0.65;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+  z-index: 1;
+}
+
+.gradient-glow-btn::after {
+  z-index: 2;
+}
+
+.gradient-glow-inner {
+  position: relative;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  height: 44px;
+  padding: 0 24px;
+  background: var(--btn-inner-bg);
+  color: var(--text-primary);
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.gradient-glow-inner svg {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gradient-glow-btn:hover {
+  transform: translateY(-2px);
+}
+
+.gradient-glow-btn:hover::before {
+  filter: blur(18px);
+  opacity: 1;
+}
+
+.gradient-glow-btn:hover .gradient-glow-inner svg {
+  transform: translateX(4px);
+}
+
+.gradient-glow-btn:active {
+  transform: translateY(0);
+}
+
+@keyframes spinGradient {
+  0% {
+    --glow-angle: 0deg;
+  }
+  100% {
+    --glow-angle: 360deg;
+  }
 }
 
 .hero-btn {
@@ -314,14 +426,14 @@
   border-radius: 4px;
   cursor: pointer;
   box-sizing: border-box;
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .primary-btn {
   background-color: var(--text-primary);
   color: var(--bg-primary);
   border: 1px solid var(--text-primary);
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .primary-btn:hover {
