@@ -32,6 +32,21 @@ export default function Navbar({ currentPage }) {
   };
 
   useEffect(() => {
+    if (isCvModalOpen && !isCvModalClosing) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, [isCvModalOpen, isCvModalClosing]);
+
+  useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
         setIsSettingsOpen(false);
@@ -345,6 +360,7 @@ export default function Navbar({ currentPage }) {
       </header>
 
      {isCvModalOpen && (
+      
         <div 
           className={`cv-modal-backdrop ${isCvModalClosing ? 'closing' : ''}`}
           onClick={handleCloseCvModal}
