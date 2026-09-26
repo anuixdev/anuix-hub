@@ -32,6 +32,21 @@ export default function Navbar({ currentPage }) {
   };
 
   useEffect(() => {
+    if (isCvModalOpen && !isCvModalClosing) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, [isCvModalOpen, isCvModalClosing]);
+
+  useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
         setIsSettingsOpen(false);
@@ -345,6 +360,7 @@ export default function Navbar({ currentPage }) {
       </header>
 
      {isCvModalOpen && (
+      
         <div 
           className={`cv-modal-backdrop ${isCvModalClosing ? 'closing' : ''}`}
           onClick={handleCloseCvModal}
@@ -357,7 +373,6 @@ export default function Navbar({ currentPage }) {
           >
             <div className="cv-modal-header">
               <div className="cv-modal-title">
-                <span className="cv-title-pip" />
                 <span>{t.cvModal.title}</span>
               </div>
               <button 
@@ -389,7 +404,7 @@ export default function Navbar({ currentPage }) {
                     <span className="cv-option-label">{option.label}</span>
                     <span className="cv-option-meta">{option.meta}</span>
                   </div>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M7 17L17 7M17 7H7M17 7V17" />
                   </svg>
                 </a>
