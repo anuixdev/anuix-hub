@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import NanoCanvas from './NanoCanvas.jsx';
 import { WEB_LOGS } from '../../data/logsData.js';
 import '../css/LoadingScreen.css';
@@ -37,14 +37,41 @@ export default function LoadingScreen({ children, onComplete, onLoaded }) {
   const [rippleActive, setRippleActive] = useState(false);
   const [circumferenceExpand, setCircumferenceExpand] = useState(false);
   const [overlayFade, setOverlayFade] = useState(false);
+  
+  const [siteRevealed, setSiteRevealed] = useState(() => !needsLoader);
   const [isAnimationDone, setIsAnimationDone] = useState(() => !needsLoader);
+
+  const finishLoading = useCallback(() => {
+    setIsAnimationDone(true);
+    try {
+      sessionStorage.setItem('anuix_visited', 'true');
+    } catch {}
+    if (typeof onComplete === 'function') onComplete();
+    if (typeof onLoaded === 'function') onLoaded();
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+  }, [onComplete, onLoaded]);
 
   useEffect(() => {
     if (!needsLoader) {
-      if (typeof onComplete === 'function') onComplete();
-      if (typeof onLoaded === 'function') onLoaded();
+      finishLoading();
     }
-  }, [needsLoader, onComplete, onLoaded]);
+  }, [needsLoader, finishLoading]);
+
+  useEffect(() => {
+    if (needsLoader && !siteRevealed) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      window.scrollTo(0, 0);
+    } else {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, [needsLoader, siteRevealed]);
 
   useEffect(() => {
     if (!needsLoader) return;
@@ -76,12 +103,12 @@ export default function LoadingScreen({ children, onComplete, onLoaded }) {
             clearInterval(intervalSub);
             setTimeout(() => {
               setSplashFade(true);
-              setTimeout(() => setHudOpened(true), 300);
-            }, 700);
+              setTimeout(() => setHudOpened(true), 150);
+            }, 300);
           }
-        }, 28);
+        }, 15);
       }
-    }, 75);
+    }, 35);
 
     return () => clearInterval(intervalTitle);
   }, [needsLoader]);
@@ -93,7 +120,7 @@ export default function LoadingScreen({ children, onComplete, onLoaded }) {
     let logIndex = 0;
 
     const interval = setInterval(() => {
-      currentProgress += Math.random() * 0.85 + 0.35;
+      currentProgress += Math.random() * 0.9 + 0.6;
 
       if (currentProgress >= 100) {
         currentProgress = 100;
@@ -120,7 +147,7 @@ export default function LoadingScreen({ children, onComplete, onLoaded }) {
         else if (currentProgress < 70) setStatusMsg("SYNTHESIZING WEB ELEMENTS AND PLUGINS...");
         else if (currentProgress < 98) setStatusMsg("OPTIMIZING GRAY AND DOM DISPERSION...");
       }
-    }, 45);
+    }, 22);
 
     return () => clearInterval(interval);
   }, [needsLoader, hudOpened, isCompleted]);
@@ -128,61 +155,39 @@ export default function LoadingScreen({ children, onComplete, onLoaded }) {
   useEffect(() => {
     if (!needsLoader || !isCompleted) return;
 
-    const t1 = setTimeout(() => {
-      setHudFadeOut(true);
+    const timeouts = [];
 
-      const t2 = setTimeout(() => {
-        setLaserState('flash');
+    timeouts.push(setTimeout(() => setHudFadeOut(true), 400));
+    timeouts.push(setTimeout(() => setLaserState('flash'), 750));
+    timeouts.push(setTimeout(() => {
+      setLaserState('vanish');
+      setPointState('ignite');
+    }, 950));
+    timeouts.push(setTimeout(() => {
+      setPointState('kinetic-drop');
+    }, 1150));
+    timeouts.push(setTimeout(() => {
+      setPointState('hidden');
+      setRippleActive(true);
+      window.scrollTo(0, 0);
+    }, 2000));
+    timeouts.push(setTimeout(() => {
+      setCircumferenceExpand(true);
+      setOverlayFade(true);
+      setSiteRevealed(true); 
+    }, 2300));
+    timeouts.push(setTimeout(() => finishLoading(), 3300)); 
 
-        const t3 = setTimeout(() => {
-          setLaserState('vanish');
-          setPointState('ignite');
-
-          const t4 = setTimeout(() => {
-            setPointState('kinetic-drop');
-
-            const t5 = setTimeout(() => {
-              setPointState('hidden');
-              setRippleActive(true);
-
-              const t6 = setTimeout(() => {
-                setCircumferenceExpand(true);
-                setOverlayFade(true);
-
-                const t7 = setTimeout(() => {
-                  setIsAnimationDone(true);
-                  try {
-                    sessionStorage.setItem('anuix_visited', 'true');
-                  } catch {}
-                  if (typeof onComplete === 'function') onComplete();
-                  if (typeof onLoaded === 'function') onLoaded();
-                }, 1000);
-
-                return () => clearTimeout(t7);
-              }, 260);
-
-              return () => clearTimeout(t6);
-            }, 850);
-
-            return () => clearTimeout(t5);
-          }, 320);
-
-          return () => clearTimeout(t4);
-        }, 300);
-
-        return () => clearTimeout(t3);
-      }, 1000);
-
-      return () => clearTimeout(t2);
-    }, 1300);
-
-    return () => clearTimeout(t1);
-  }, [needsLoader, isCompleted, onComplete, onLoaded]);
+    return () => timeouts.forEach(clearTimeout);
+  }, [needsLoader, isCompleted, finishLoading]);
 
   if (!needsLoader || isAnimationDone) {
     return (
       <div className="anuix-app-root">
-        <main className="anuix-main-site">
+        <main 
+          className="anuix-main-site" 
+          style={{ opacity: 1, visibility: 'visible', height: 'auto', overflow: 'visible' }}
+        >
           {children}
         </main>
       </div>
@@ -191,7 +196,16 @@ export default function LoadingScreen({ children, onComplete, onLoaded }) {
 
   return (
     <div className="anuix-app-root">
-      <main className="anuix-main-site">
+      <main 
+        className="anuix-main-site"
+        style={{ 
+          opacity: siteRevealed ? 1 : 0,
+          visibility: siteRevealed ? 'visible' : 'hidden',
+          height: siteRevealed ? 'auto' : '100vh',
+          overflow: siteRevealed ? 'visible' : 'hidden',
+          transition: siteRevealed ? 'opacity 0.2s ease-out' : 'none'
+        }}
+      >
         {children}
       </main>
 
@@ -246,7 +260,7 @@ export default function LoadingScreen({ children, onComplete, onLoaded }) {
             <div className="progress-meta">
               <div>
                 <div style={{ fontSize: 10, color: '#888', marginBottom: 4 }}>
-                  {isCompleted ? "SYSTEM STATE: AUTENTICATED" : "COMPILING ASSETS & PLUGINS"}
+                  {isCompleted ? "SYSTEM STATE: AUTHENTICATED" : "COMPILING ASSETS & PLUGINS"}
                 </div>
                 <div className="status-text">
                   {isCompleted ? (
