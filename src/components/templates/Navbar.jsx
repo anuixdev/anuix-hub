@@ -88,13 +88,13 @@ export default function Navbar({ currentPage }) {
       const windowHeight = window.innerHeight;
       const docHeight = document.documentElement.scrollHeight;
 
-      if (windowHeight + scrollY >= docHeight - 70) {
-        setActiveSection('contacto');
+      if (scrollY < 120) {
+        setActiveSection('hero');
         return;
       }
 
-      if (scrollY < 120) {
-        setActiveSection('hero');
+      if (docHeight > windowHeight && windowHeight + scrollY >= docHeight - 70) {
+        setActiveSection('contacto');
         return;
       }
 
