@@ -113,13 +113,13 @@ export const PROJECTS_DATA = {
                 type: 'gallery',
                 data: 'BANCO DE DATOS',
                 images: [
-                  { url: '/assets/images/projects/hydron/Audicrea 2026_021.JPG', caption: 'COMIENZO_EVENTO' },
-                  { url: '/assets/images/projects/hydron/Audicrea 2026_114.JPG', caption: 'PRACTICA_1' },
-                  { url: '/assets/images/projects/hydron/Audicrea 2026_121.JPG', caption: 'PRACTICA_2' },
-                  { url: '/assets/images/projects/hydron/Audicrea 2026_139.JPG', caption: 'MENTORES' },
-                  { url: '/assets/images/projects/hydron/Audicrea 2026_167.JPG', caption: 'DIA_FINAL' },
-                  { url: '/assets/images/projects/hydron/Audicrea 2026_301.JPG', caption: 'PRESENTACIÓN' },
-                  { url: '/assets/images/projects/hydron/Audicrea 2026_445.JPG', caption: 'PREMIACIÓN' },
+                  { url: '/assets/images/projects/hydron/Audicrea_2026_021.JPG', caption: 'COMIENZO_EVENTO' },
+                  { url: '/assets/images/projects/hydron/Audicrea_2026_114.JPG', caption: 'PRACTICA_1' },
+                  { url: '/assets/images/projects/hydron/Audicrea_2026_121.JPG', caption: 'PRACTICA_2' },
+                  { url: '/assets/images/projects/hydron/Audicrea_2026_139.JPG', caption: 'MENTORES' },
+                  { url: '/assets/images/projects/hydron/Audicrea_2026_167.JPG', caption: 'DIA_FINAL' },
+                  { url: '/assets/images/projects/hydron/Audicrea_2026_301.JPG', caption: 'PRESENTACIÓN' },
+                  { url: '/assets/images/projects/hydron/Audicrea_2026_445.JPG', caption: 'PREMIACIÓN' },
 
                 ]
               }
@@ -293,13 +293,13 @@ export const PROJECTS_DATA = {
                 type: 'gallery',
                 data: 'DATA BANK',
                 images: [
-                  { url: '/assets/images/projects/hydron/Audicrea 2026_021.JPG', caption: 'START' },
-                  { url: '/assets/images/projects/hydron/Audicrea 2026_114.JPG', caption: 'PRACTICE_1' },
-                  { url: '/assets/images/projects/hydron/Audicrea 2026_121.JPG', caption: 'PRACTICE_2' },
-                  { url: '/assets/images/projects/hydron/Audicrea 2026_139.JPG', caption: 'DRIVERS' },
-                  { url: '/assets/images/projects/hydron/Audicrea 2026_167.JPG', caption: 'FINAL_DAY' },
-                  { url: '/assets/images/projects/hydron/Audicrea 2026_301.JPG', caption: 'PRESENTATION' },
-                  { url: '/assets/images/projects/hydron/Audicrea 2026_445.JPG', caption: 'AWARDS' },
+                  { url: '/assets/images/projects/hydron/Audicrea_2026_021.JPG', caption: 'START' },
+                  { url: '/assets/images/projects/hydron/Audicrea_2026_114.JPG', caption: 'PRACTICE_1' },
+                  { url: '/assets/images/projects/hydron/Audicrea_2026_121.JPG', caption: 'PRACTICE_2' },
+                  { url: '/assets/images/projects/hydron/Audicrea_2026_139.JPG', caption: 'DRIVERS' },
+                  { url: '/assets/images/projects/hydron/Audicrea_2026_167.JPG', caption: 'FINAL_DAY' },
+                  { url: '/assets/images/projects/hydron/Audicrea_2026_301.JPG', caption: 'PRESENTATION' },
+                  { url: '/assets/images/projects/hydron/Audicrea_2026_445.JPG', caption: 'AWARDS' },
 
                 ]
               }
