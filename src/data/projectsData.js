@@ -168,7 +168,7 @@ export const PROJECTS_DATA = {
             content: [
               { 
                 type: 'document',
-                url: 'public/CR_Audi.pdf', 
+                url: '/CR_Audi.pdf', 
                 label: 'Visualizar Reconocimiento obtenido' 
               }
             ]
@@ -349,8 +349,7 @@ export const PROJECTS_DATA = {
               { 
                 type: 'document',
                 url: '/CR_Audi.pdf', 
-                label: 'View Recognition obtained' ,
-                format: 'PDF_DOCUMENT'
+                label: 'View Recognition obtained'
               }
             ]
           }
