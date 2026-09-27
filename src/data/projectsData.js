@@ -60,7 +60,7 @@ export const PROJECTS_DATA = {
                 },
                 {
                   type: 'document',
-                  url: 'public/Memoria del TFG.pdf',
+                  url: 'public/Memoria_del_TFG.pdf',
                   label: 'Memoria Técnica Completa',
                   format: 'PDF_DOCUMENT'
                 }
@@ -239,7 +239,7 @@ export const PROJECTS_DATA = {
               },
               {
                 type: 'document',
-                url: 'public/Memoria del TFG.pdf',
+                url: 'public/Memoria_del_TFG.pdf',
                 label: 'Full Technical Thesis Report',
                 format: 'PDF_DOCUMENT'
               }
