@@ -31,13 +31,7 @@ export default function LoadingScreen({ children, onComplete, onLoaded }) {
   const [logs, setLogs] = useState([]);
   const [isCompleted, setIsCompleted] = useState(false);
 
-  const [hudFadeOut, setHudFadeOut] = useState(false);
-  const [laserState, setLaserState] = useState('');
-  const [pointState, setPointState] = useState('');
-  const [rippleActive, setRippleActive] = useState(false);
-  const [circumferenceExpand, setCircumferenceExpand] = useState(false);
-  const [overlayFade, setOverlayFade] = useState(false);
-  
+  const [initPowerOff, setInitPowerOff] = useState(false);
   const [siteRevealed, setSiteRevealed] = useState(() => !needsLoader);
   const [isAnimationDone, setIsAnimationDone] = useState(() => !needsLoader);
 
@@ -59,7 +53,7 @@ export default function LoadingScreen({ children, onComplete, onLoaded }) {
   }, [needsLoader, finishLoading]);
 
   useEffect(() => {
-    if (needsLoader && !siteRevealed) {
+    if (needsLoader && !isAnimationDone) {
       document.body.style.overflow = 'hidden';
       document.documentElement.style.overflow = 'hidden';
       window.scrollTo(0, 0);
@@ -71,7 +65,7 @@ export default function LoadingScreen({ children, onComplete, onLoaded }) {
       document.body.style.overflow = '';
       document.documentElement.style.overflow = '';
     };
-  }, [needsLoader, siteRevealed]);
+  }, [needsLoader, isAnimationDone]);
 
   useEffect(() => {
     if (!needsLoader) return;
@@ -157,26 +151,14 @@ export default function LoadingScreen({ children, onComplete, onLoaded }) {
 
     const timeouts = [];
 
-    timeouts.push(setTimeout(() => setHudFadeOut(true), 400));
-    timeouts.push(setTimeout(() => setLaserState('flash'), 750));
+    timeouts.push(setTimeout(() => setInitPowerOff(true), 400));
+    
     timeouts.push(setTimeout(() => {
-      setLaserState('vanish');
-      setPointState('ignite');
-    }, 950));
-    timeouts.push(setTimeout(() => {
-      setPointState('kinetic-drop');
-    }, 1150));
-    timeouts.push(setTimeout(() => {
-      setPointState('hidden');
-      setRippleActive(true);
       window.scrollTo(0, 0);
-    }, 2000));
-    timeouts.push(setTimeout(() => {
-      setCircumferenceExpand(true);
-      setOverlayFade(true);
-      setSiteRevealed(true); 
-    }, 2300));
-    timeouts.push(setTimeout(() => finishLoading(), 3300)); 
+      setSiteRevealed(true);
+    }, 1400));
+
+    timeouts.push(setTimeout(() => finishLoading(), 2500)); 
 
     return () => timeouts.forEach(clearTimeout);
   }, [needsLoader, isCompleted, finishLoading]);
@@ -203,13 +185,18 @@ export default function LoadingScreen({ children, onComplete, onLoaded }) {
           visibility: siteRevealed ? 'visible' : 'hidden',
           height: siteRevealed ? 'auto' : '100vh',
           overflow: siteRevealed ? 'visible' : 'hidden',
-          transition: siteRevealed ? 'opacity 0.2s ease-out' : 'none'
+          transform: siteRevealed ? 'scale(1) translateY(0)' : 'scale(1.03) translateY(15px)',
+          filter: siteRevealed ? 'blur(0px)' : 'blur(10px)',
+          transition: siteRevealed ? 'opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), filter 0.9s cubic-bezier(0.22, 1, 0.36, 1)' : 'none'
         }}
       >
         {children}
       </main>
 
-      <div className={`anuix-loader-overlay ${hudFadeOut ? 'dark-mode' : ''} ${overlayFade ? 'fade-out' : ''}`}>
+      <div className={`anuix-loader-overlay ${initPowerOff ? 'powering-off' : ''} ${siteRevealed ? 'fade-out' : ''}`}>
+        
+        <div className="power-off-layer" />
+
         <div className="bg-grid"></div>
 
         <div id="splash-intro" className={splashFade ? 'fade-out' : ''}>
@@ -223,7 +210,7 @@ export default function LoadingScreen({ children, onComplete, onLoaded }) {
           </div>
         </div>
 
-        <div className={`hud-grid ${hudOpened ? 'opened' : ''} ${hudFadeOut ? 'hud-hidden' : ''}`}>
+        <div className={`hud-grid ${hudOpened ? 'opened' : ''}`}>
           <div className="hud-box box-header">
             <div className="tab-handle">TAB:00 // SYS_TELEMETRY</div>
             <div className="tag">APP: <strong>ANUIX // RUNTIME</strong></div>
@@ -279,22 +266,6 @@ export default function LoadingScreen({ children, onComplete, onLoaded }) {
             </div>
           </div>
         </div>
-
-        <div id="laser-beam" className={laserState} />
-
-        <div 
-          id="laser-singularity" 
-          className={pointState} 
-          style={{ opacity: pointState === 'hidden' ? 0 : undefined }} 
-        />
-
-        <div id="ripple-container" className={rippleActive ? 'active' : ''}>
-          <div className="ripple-wave wave-1" />
-          <div className="ripple-wave wave-2" />
-          <div className="ripple-wave wave-3" />
-        </div>
-
-        <div id="main-circumference" className={circumferenceExpand ? 'expand' : ''} />
       </div>
     </div>
   );
