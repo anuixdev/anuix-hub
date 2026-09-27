@@ -9,7 +9,7 @@ import Footer from './Footer.jsx';
 import ScrollToTop from './ScrollToTop.jsx';
 import { usePreferences } from '../../context/PreferencesContext.jsx';
 import { HERO_PHRASES, HERO_CONTENT } from '../../data/siteData.js';
-import profileImg from '../../assets/images/profile.png';
+import profileImg from 'assets/images/profile.png';
 import '../css/Hero.css';
 
 export default function Hero() {
