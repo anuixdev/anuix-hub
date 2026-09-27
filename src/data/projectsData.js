@@ -35,8 +35,8 @@ export const PROJECTS_DATA = {
             content: [
               { 
                 type: 'comparison', 
-                beforeUrl: 'src/assets/images/projects/RV-MAP/11046.jpg', 
-                afterUrl: 'src/assets/images/projects/RV-MAP/mapchart_11046.jpg',
+                beforeUrl: '/assets/images/projects/RV-MAP/11046.jpg', 
+                afterUrl: '/assets/images/projects/RV-MAP/mapchart_11046.jpg',
                 beforeLabel: 'RAW_INPUT',
                 afterLabel: 'PROCESSED_OUTPUT',
                 caption: 'Segmentación de instancias sobre zona de desastre natural y trazado de instancias.' 
@@ -60,7 +60,7 @@ export const PROJECTS_DATA = {
                 },
                 {
                   type: 'document',
-                  url: 'public/Memoria_del_TFG.pdf',
+                  url: '/Memoria_del_TFG.pdf',
                   label: 'Memoria Técnica Completa',
                   format: 'PDF_DOCUMENT'
                 }
@@ -113,13 +113,13 @@ export const PROJECTS_DATA = {
                 type: 'gallery',
                 data: 'BANCO DE DATOS',
                 images: [
-                  { url: 'src/assets/images/projects/hydron/Audicrea 2026_021.JPG', caption: 'COMIENZO_EVENTO' },
-                  { url: 'src/assets/images/projects/hydron/Audicrea 2026_114.JPG', caption: 'PRACTICA_1' },
-                  { url: 'src/assets/images/projects/hydron/Audicrea 2026_121.JPG', caption: 'PRACTICA_2' },
-                  { url: 'src/assets/images/projects/hydron/Audicrea 2026_139.JPG', caption: 'MENTORES' },
-                  { url: 'src/assets/images/projects/hydron/Audicrea 2026_167.JPG', caption: 'DIA_FINAL' },
-                  { url: 'src/assets/images/projects/hydron/Audicrea 2026_301.JPG', caption: 'PRESENTACIÓN' },
-                  { url: 'src/assets/images/projects/hydron/Audicrea 2026_445.JPG', caption: 'PREMIACIÓN' },
+                  { url: '/assets/images/projects/hydron/Audicrea 2026_021.JPG', caption: 'COMIENZO_EVENTO' },
+                  { url: '/assets/images/projects/hydron/Audicrea 2026_114.JPG', caption: 'PRACTICA_1' },
+                  { url: '/assets/images/projects/hydron/Audicrea 2026_121.JPG', caption: 'PRACTICA_2' },
+                  { url: '/assets/images/projects/hydron/Audicrea 2026_139.JPG', caption: 'MENTORES' },
+                  { url: '/assets/images/projects/hydron/Audicrea 2026_167.JPG', caption: 'DIA_FINAL' },
+                  { url: '/assets/images/projects/hydron/Audicrea 2026_301.JPG', caption: 'PRESENTACIÓN' },
+                  { url: '/assets/images/projects/hydron/Audicrea 2026_445.JPG', caption: 'PREMIACIÓN' },
 
                 ]
               }
@@ -168,7 +168,7 @@ export const PROJECTS_DATA = {
             content: [
               { 
                 type: 'document',
-                url: 'public/Audi Creativity Challenge _ Carta de reconocimiento Alexandru Nicolas Untaru.pdf', 
+                url: 'public/CR_Audi.pdf', 
                 label: 'Visualizar Reconocimiento obtenido' 
               }
             ]
@@ -239,7 +239,7 @@ export const PROJECTS_DATA = {
               },
               {
                 type: 'document',
-                url: 'public/Memoria_del_TFG.pdf',
+                url: '/Memoria_del_TFG.pdf',
                 label: 'Full Technical Thesis Report',
                 format: 'PDF_DOCUMENT'
               }
@@ -293,13 +293,13 @@ export const PROJECTS_DATA = {
                 type: 'gallery',
                 data: 'DATA BANK',
                 images: [
-                  { url: 'src/assets/images/projects/hydron/Audicrea 2026_021.JPG', caption: 'START' },
-                  { url: 'src/assets/images/projects/hydron/Audicrea 2026_114.JPG', caption: 'PRACTICE_1' },
-                  { url: 'src/assets/images/projects/hydron/Audicrea 2026_121.JPG', caption: 'PRACTICE_2' },
-                  { url: 'src/assets/images/projects/hydron/Audicrea 2026_139.JPG', caption: 'DRIVERS' },
-                  { url: 'src/assets/images/projects/hydron/Audicrea 2026_167.JPG', caption: 'FINAL_DAY' },
-                  { url: 'src/assets/images/projects/hydron/Audicrea 2026_301.JPG', caption: 'PRESENTATION' },
-                  { url: 'src/assets/images/projects/hydron/Audicrea 2026_445.JPG', caption: 'AWARDS' },
+                  { url: '/assets/images/projects/hydron/Audicrea 2026_021.JPG', caption: 'START' },
+                  { url: '/assets/images/projects/hydron/Audicrea 2026_114.JPG', caption: 'PRACTICE_1' },
+                  { url: '/assets/images/projects/hydron/Audicrea 2026_121.JPG', caption: 'PRACTICE_2' },
+                  { url: '/assets/images/projects/hydron/Audicrea 2026_139.JPG', caption: 'DRIVERS' },
+                  { url: '/assets/images/projects/hydron/Audicrea 2026_167.JPG', caption: 'FINAL_DAY' },
+                  { url: '/assets/images/projects/hydron/Audicrea 2026_301.JPG', caption: 'PRESENTATION' },
+                  { url: '/assets/images/projects/hydron/Audicrea 2026_445.JPG', caption: 'AWARDS' },
 
                 ]
               }
@@ -348,7 +348,7 @@ export const PROJECTS_DATA = {
             content: [
               { 
                 type: 'link',
-                url: 'public/Audi Creativity Challenge _ Carta de reconocimiento Alexandru Nicolas Untaru.pdf', 
+                url: '/CR_Audi.pdf', 
                 label: 'View Recognition obtained' 
               }
             ]
