@@ -347,9 +347,10 @@ export const PROJECTS_DATA = {
             label: '03 // RECOGNITION',
             content: [
               { 
-                type: 'link',
+                type: 'document',
                 url: '/CR_Audi.pdf', 
-                label: 'View Recognition obtained' 
+                label: 'View Recognition obtained' ,
+                format: 'PDF_DOCUMENT'
               }
             ]
           }
